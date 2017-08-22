@@ -1,3 +1,5 @@
+package task1.calc;
+
 public class Division {
     public static void main(String[] args) {
         if (args.length != 2) {
