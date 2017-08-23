@@ -8,7 +8,7 @@ package task1.calc;
 public class Addition {
     public static void main(String[] args) {
         if (args.length != 2) {
-            System.err.println("Wrong number of parameters!");
+            System.err.println("Wrong number of arguments!");
         } else {
             try {
                 System.out.println(Double.parseDouble(args[0]) + Double.parseDouble(args[1]));
