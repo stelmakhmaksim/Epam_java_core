@@ -79,53 +79,68 @@ public class Calculator {
         }
     }
 
+    public static boolean checkItem() {
+        sc = new Scanner(System.in);
+        try {
+            item = sc.nextInt();
+        } catch (InputMismatchException e) {
+            System.out.println("Incorrect input format.\nPlease enter symbol from 1 to 6.");
+            return false;
+        }
+        return true;
+    }
+
     public static boolean checkNumber() {
         try {
             System.out.print("First number:");
+            sc = new Scanner(System.in);
             num1 = sc.nextDouble();
             System.out.print("Second number:");
             num2 = sc.nextDouble();
-        } catch (NumberFormatException e) {
-            System.out.println("\nIncorrect input format.\nPlease enter numbers.");
-            return true;
         } catch (InputMismatchException e) {
             System.out.println("\nIncorrect input format.\nPlease enter numbers which are separated by a dot.");
-            return true;
+            return false;
         }
-        return false;
+        return true;
     }
-        /*public static void clearScr(){//clear console doesn't work yet
-        if (sc.nextInt() == 0) {
+
+    public static void clearScr() {//clear console doesn't work yet
+        System.out.println("Enter 0 to clear screen or any symbol to continue.");
+        sc.next();
+         /*if (sc.next().equals(0)) {
             try {
                 Runtime.getRuntime().exec("cls");
             } catch (Exception e) {
                 System.out.println(e);
             }
-        }
-    }*/
+        }*/
+    }
 
-    static double num1, num2;
     static Scanner sc;
+    static int item;
+    static double num1, num2;
 
     public static void main(String[] args) {
-        int item;
+
         do {
             decor();
-            sc = new Scanner(System.in);
             do {
-                item = sc.nextInt();
+                do {
+                    if (checkItem())
+                        break;
+                } while (true);
                 if (operSelect(item))
                     break;
             } while (true);
             System.out.println("Please enter two numbers.");
             do {
-                if(checkNumber()==false)
+                if (checkNumber())
                     break;
             } while (true);
             double res = operExe(item, num1, num2);
-            //clearScr(); //clear screen doesn't work yet
             StarSymbols ss = new StarSymbols();
             ss.printText(Double.toString(res));
+            clearScr(); //clear screen doesn't work yet
         } while (true);
     }
 }
