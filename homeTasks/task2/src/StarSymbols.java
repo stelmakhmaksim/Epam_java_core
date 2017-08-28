@@ -5,7 +5,7 @@ public class StarSymbols {
     private Map<Character, char[][]> charMap;
     private Map<String, char[][]> stringMap;
 
-    StarSymbols() {
+    public StarSymbols() {
         char[][] zero = {
                 {' ', ' ', '*', ' ', ' '},
                 {' ', '*', ' ', '*', ' '},

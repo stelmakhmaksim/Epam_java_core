@@ -1,6 +1,6 @@
 public class Addition extends MainArithmeticOperation {
 
-    Addition(double n1, double n2) {
+    public Addition(double n1, double n2) {
         super(n1, n2);
     }
 

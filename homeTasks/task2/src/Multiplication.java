@@ -1,6 +1,6 @@
 public class Multiplication extends MainArithmeticOperation {
 
-    Multiplication(double n1, double n2) {
+    public Multiplication(double n1, double n2) {
         super(n1, n2);
     }
 
