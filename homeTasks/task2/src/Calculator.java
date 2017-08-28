@@ -10,6 +10,7 @@
 выполяет действие и выводит результат псевдографикой.
  */
 
+import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -104,17 +105,20 @@ public class Calculator {
         return true;
     }
 
-    public static void clearScr() {//clear console doesn't work yet
+    public static void clearConsole() {
         System.out.println("Enter 0 to clear screen or any symbol to continue.");
-        sc.next();
-         /*if (sc.next().equals(0)) {
+        if ("0".equals(sc.next())) {
             try {
-                Runtime.getRuntime().exec("cls");
-            } catch (Exception e) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } catch (InterruptedException e) {
+                System.out.println(e);
+            } catch (IOException e) {
                 System.out.println(e);
             }
-        }*/
+
+        }
     }
+
 
     static Scanner sc;
     static int item;
@@ -140,7 +144,7 @@ public class Calculator {
             double res = operExe(item, num1, num2);
             StarSymbols ss = new StarSymbols();
             ss.printText(Double.toString(res));
-            clearScr(); //clear screen doesn't work yet
+            clearConsole();
         } while (true);
     }
 }
