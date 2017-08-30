@@ -15,8 +15,11 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Calculator {
+    private Scanner sc;
+    private int item;
+    private double num1, num2;
 
-    public static void decor() {
+    public void decor() {
         System.out.println("------------------------------------------------------");
         System.out.println("Hello! I'm calculator!");
         System.out.println("Please select the operation which you want to perform.");
@@ -28,7 +31,7 @@ public class Calculator {
         System.out.print("You are entering number: ");
     }
 
-    public static boolean operSelect(int item) {
+    public boolean operSelect(int item) {
         switch (item) {
             case 1:
                 System.out.println("Your choise is addition (+).");
@@ -51,7 +54,7 @@ public class Calculator {
         }
     }
 
-    public static double operExe(int item, double num1, double num2) {
+    public double operExe(int item, double num1, double num2) {
         String str = new String("Result of calculation: ");
         double res = 0;
         switch (item) {
@@ -80,7 +83,7 @@ public class Calculator {
         }
     }
 
-    public static boolean checkItem() {
+    public boolean checkItem() {
         sc = new Scanner(System.in);
         try {
             item = sc.nextInt();
@@ -91,7 +94,7 @@ public class Calculator {
         return true;
     }
 
-    public static boolean checkNumber() {
+    public boolean checkNumber() {
         try {
             System.out.print("First number:");
             sc = new Scanner(System.in);
@@ -105,7 +108,7 @@ public class Calculator {
         return true;
     }
 
-    public static void clearConsole() {
+    public void clearConsole() {
         System.out.println("Enter 0 to clear screen or any symbol to continue.");
         if ("0".equals(sc.next())) {
             try {
@@ -119,32 +122,27 @@ public class Calculator {
         }
     }
 
-
-    static Scanner sc;
-    static int item;
-    static double num1, num2;
-
     public static void main(String[] args) {
-
+        final Calculator calc = new Calculator();
         do {
-            decor();
+            calc.decor();
             do {
                 do {
-                    if (checkItem())
+                    if (calc.checkItem())
                         break;
                 } while (true);
-                if (operSelect(item))
+                if (calc.operSelect(calc.item))
                     break;
             } while (true);
             System.out.println("Please enter two numbers.");
             do {
-                if (checkNumber())
+                if (calc.checkNumber())
                     break;
             } while (true);
-            double res = operExe(item, num1, num2);
+            double res = calc.operExe(calc.item, calc.num1, calc.num2);
             StarSymbols ss = new StarSymbols();
             ss.printText(Double.toString(res));
-            clearConsole();
+            calc.clearConsole();
         } while (true);
     }
 }
