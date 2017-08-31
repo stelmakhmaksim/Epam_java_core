@@ -6,6 +6,6 @@ public class Division extends MainArithmeticOperation {
 
     @Override
     public double operation() {
-        return num1 / num2;
+        return getNum1() / getNum2();
     }
 }
